@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+Number Match Game (React.js)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple interactive 3×3 grid game built with React.
+Players take turns clicking squares to reveal their number (Player 1 → 1, Player 2 → 2).
+The first player to get three matching numbers in a row wins.
 
-## Available Scripts
+⭐ Features
+✅ 3×3 Clickable Grid
 
-In the project directory, you can run:
+Displays nine squares initialized with "?"
 
-### `npm start`
+Clicking a square reveals the current player’s number (1 or 2)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+✅ Turn-Based Gameplay
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Players alternate turns automatically
 
-### `npm test`
+Turn indicator updates dynamically
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+✅ Prevents Overwriting
 
-### `npm run build`
+Once a square has been clicked, it cannot be changed
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Both the Square and game logic guard against accidental overwriting
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+✅ Win Detection
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Game detects three identical numbers in:
 
-### `npm run eject`
+Rows
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Columns
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Diagonals
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Displays "Player X Wins!" when a winning line is found
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Prevents any further moves after a winner is declared
 
-## Learn More
+✅ Modular Architecture
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The game is broken into clean, reusable components:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+src
+- Game.js         # Top-level game controller (state, winner logic)
+- Board.js        # Renders the 3×3 grid
+- Square.js       # Individual square with click protection
+- checkWinner.js  # Pure function that checks all winning lines
+- App.js          # Root component
 
-### Code Splitting
+🚀 How to Run the Project
+1. Install dependencies
+``npm install
+``
+2. Start the development server
+``npm start
+``
+3. View in your browser
+``http://localhost:3000
+``
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+🧩 How It Works
+Square Component
 
-### Analyzing the Bundle Size
+Displays "?" if empty
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Shows either 1 or 2 after being clicked
 
-### Making a Progressive Web App
+Ignores additional clicks (prevents overwriting)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Supports a disabled flag to block input after the game ends
 
-### Advanced Configuration
+Board Component
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Renders the 3×3 grid of Square components
 
-### Deployment
+Pure presentation — no game logic inside
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Uses props to receive square values and click handlers
 
-### `npm run build` fails to minify
+Game Component
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Stores:
+
+Square values ([null, null, ...])
+
+Current player (1 or 2)
+
+Winner (if any)
+
+Handles:
+
+Alternating turns
+
+Updating the grid
+
+Resetting the game
+
+checkWinner.js
+
+Scans all 8 winning combinations
+
+Returns the winning player or null
+
+🔄 Resetting the Game
+
+A “Reset Game” button clears the board and starts a new round with Player 1.
+
+🛠️ Tech Stack
+
+React.js
+
+JavaScript (ES6+)
+
+CSS for layout/grid styling
+
+IntelliJ IDEA Ultimate (development environment)
