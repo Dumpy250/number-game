@@ -1,15 +1,7 @@
-// Square.js
-export default function Square({ value, onClick, disabled }) {
-    function handleClick() {
-        if (disabled || value !== null) return;
-        onClick();
-    }
-
+export default function Square({ value, onClick }) {
     return (
-        <button className="square" onClick={handleClick}>
+        <button className="square" onClick={onClick}>
             {value ?? "?"}
         </button>
     );
 }
-
-
